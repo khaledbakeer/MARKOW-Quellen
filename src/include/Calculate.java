@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * MARKOW-Quellen:
+ * ----------------
+ * <p>
+ * Eine Markow-Quelle ist das Mathematische Modell einer Informationsquelle, bei dem die aufeinanderfolgende Auswahl
+ * von Quellenzeichen, d. h. die Folge der Zustände, sowohl von der momentanen Verteilung der Auftritts- bzw.
+ * Zustandswahrscheinlichkeiten als auch von der Verteilung der Übergangswahrscheinlichkeiten abhängt.
+ */
 public class Calculate {
 
     private int _t = 0;
@@ -11,9 +19,12 @@ public class Calculate {
     private int _i;
     private double[][] _transitionProbability;
     private double[] _stateProbability;
+    private List<double[]> resultsTable;
 
-    public List<double[]> resultsTable;
-
+    /**
+     * @param _transitionProbability
+     * @param StartStateProbability
+     */
     public Calculate(double[][] _transitionProbability, double[] StartStateProbability) {
         this._j = _transitionProbability.length;
         this._i = _transitionProbability[0].length;
@@ -28,6 +39,9 @@ public class Calculate {
         resultsTable.add(tmp);
     }
 
+    /**
+     *
+     */
     public void PrintTransitionProbability() {
         System.out.println("Transition Probability: ");
         System.out.println("-----------------------");
@@ -39,6 +53,9 @@ public class Calculate {
         }
     }
 
+    /**
+     * @param t
+     */
     public void PrintDetailedStateProbability(int t) {
         for (int h = 0; h < t + 1; h++) {
             System.out.print("\nState Probability for ");
@@ -65,6 +82,9 @@ public class Calculate {
         }
     }
 
+    /**
+     *
+     */
     public void WhenChangedStateProbability() {
         System.out.println("---------------------------------------------------------------------------------");
         for (int i = 1; i < resultsTable.size(); i++) {
@@ -86,6 +106,9 @@ public class Calculate {
 
     }
 
+    /**
+     *
+     */
     public void PrintStateProbabilityTable() {
         System.out.println();
         for (int j = 0; j < resultsTable.get(0).length; j++) {
@@ -97,6 +120,11 @@ public class Calculate {
         }
     }
 
+    /**
+     * @param value
+     * @param places
+     * @return
+     */
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -106,6 +134,9 @@ public class Calculate {
         return (double) tmp / factor;
     }
 
+    /**
+     * @return
+     */
     public double[][] get_transitionProbability() {
         return _transitionProbability;
     }
