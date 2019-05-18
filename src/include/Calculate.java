@@ -45,6 +45,21 @@ public class Calculate {
         if (StartStateProbability == null) throw new NullPointerException("The Start State Probability cannot be null");
         this._stateProbability = StartStateProbability;
 
+        double sum = 0;
+        for (int num = 0; num < StartStateProbability.length; num++) {
+            sum = round(sum + StartStateProbability[num], 5);
+        }
+        if (sum != 1) throw new IllegalArgumentException("The sum of Start State Probability elements must equal 1");
+
+        for (int i = 0; i < _transitionProbability.length; i++) {
+            sum = 0;
+            for (int j = 0; j < _transitionProbability[i].length; j++) {
+                sum = round(sum + _transitionProbability[i][j], 5);
+            }
+            if (sum != 1)
+                throw new IllegalArgumentException("The sum of every row in Transition Probability array must equal 1");
+        }
+
         resultsTable = new ArrayList<>();
 
         double[] tmp = new double[_i];
