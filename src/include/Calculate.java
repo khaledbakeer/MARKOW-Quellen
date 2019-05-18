@@ -1,6 +1,7 @@
 package include;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Calculate {
@@ -19,6 +20,12 @@ public class Calculate {
         this._transitionProbability = _transitionProbability;
         this._stateProbability = StartStateProbability;
         resultsTable = new ArrayList<>();
+
+        double[] tmp = new double[_i];
+        for (int i = 0; i < tmp.length; i++) {
+            tmp[i] = StartStateProbability[i];
+        }
+        resultsTable.add(tmp);
     }
 
     public void PrintTransitionProbability() {
@@ -26,34 +33,46 @@ public class Calculate {
         System.out.println("-----------------------");
         for (int a = 0; a < get_transitionProbability().length; a++) {
             for (int b = 0; b < get_transitionProbability()[a].length; b++) {
-                System.out.print(get_transitionProbability()[a][b] + " \t ");
+                System.out.print(round(get_transitionProbability()[a][b], 2) + " \t ");
             }
             System.out.println();
         }
     }
 
     public void PrintStateProbability() {
-        double[] tmp = new double[_i];
-        for (int a = 0; a < get_transitionProbability().length; a++) {
-            double x = 0;
-            for (int b = 0; b < get_transitionProbability()[a].length; b++) {
-                System.out.print("(" + get_stateProbability()[b] + "*" + get_transitionProbability()[b][a] + ")");
-                if (b == get_transitionProbability()[a].length - 1) System.out.print(" = ");
-                else System.out.print(" + ");
-                x = x + (get_stateProbability()[b] * get_transitionProbability()[b][a]);
+        for (int h = 0; h < 5; h++) {
+            System.out.print("\nt = " + _t + " -> " + "( ");
+            Arrays.stream(resultsTable.get(h)).forEach(x -> System.out.print(round(x, 2) + " "));
+            System.out.println(") \n");
+            double[] tmp = new double[_i];
+            for (int a = 0; a < get_transitionProbability().length; a++) {
+                double x = 0;
+                for (int b = 0; b < get_transitionProbability()[a].length; b++) {
+                    System.out.print("(" + round(resultsTable.get(h)[b], 2) + "*" + round(get_transitionProbability()[b][a], 2) + ")");
+                    if (b == get_transitionProbability()[a].length - 1) System.out.print(" = ");
+                    else System.out.print(" + ");
+                    x = x + (resultsTable.get(h)[b] * get_transitionProbability()[b][a]);
+                }
+                tmp[a] = x;
+                System.out.println(x);
+                System.out.println();
             }
-            tmp[a] = x;
-            System.out.println(x);
-            System.out.println();
+
+            resultsTable.add(tmp);
+            ++_t;
         }
-        resultsTable.add(tmp);
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public double[][] get_transitionProbability() {
         return _transitionProbability;
-    }
-
-    public double[] get_stateProbability() {
-        return _stateProbability;
     }
 }
