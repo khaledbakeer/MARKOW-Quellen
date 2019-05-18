@@ -39,7 +39,7 @@ public class Calculate {
         }
     }
 
-    public void PrintStateProbability(int t) {
+    public void PrintDetailedStateProbability(int t) {
         for (int h = 0; h < t + 1; h++) {
             System.out.print("\nState Probability for ");
             System.out.print("t = " + _t + " -> " + "( ");
@@ -62,6 +62,38 @@ public class Calculate {
 
             resultsTable.add(tmp);
             ++_t;
+        }
+    }
+
+    public void WhenChangedStateProbability() {
+        System.out.println("---------------------------------------------------------------------------------");
+        for (int i = 1; i < resultsTable.size(); i++) {
+            for (int j = 0; j < resultsTable.get(i).length; j++) {
+                if (round(resultsTable.get(i - 1)[j], 2) == round(resultsTable.get(i)[j], 2)) {
+                    if (j == resultsTable.get(i).length - 1) {
+                        System.out.print("From the t = " + (i + 1) + ". The State Probability ");
+                        System.out.print("( ");
+                        Arrays.stream(resultsTable.get(i)).forEach(x -> System.out.print(round(x, 2) + " "));
+                        System.out.print(") ");
+                        System.out.print("will not change anymore!");
+                        System.out.println();
+                        System.out.println("---------------------------------------------------------------------------------");
+                        return;
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void PrintStateProbabilityTable() {
+        System.out.println();
+        for (int j = 0; j < resultsTable.get(0).length; j++) {
+            System.out.print("P" + (j + 1) + " \t ");
+            for (int i = 0; i < resultsTable.size(); i++) {
+                System.out.print(round(resultsTable.get(i)[j], 2) + " \t ");
+            }
+            System.out.println();
         }
     }
 
