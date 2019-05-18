@@ -28,6 +28,7 @@ Eine Markow-Quelle ist das Mathematische Modell einer Informationsquelle, bei de
 ````
 
 ### Output:
+````text
 Transition Probability: 
 -----------------------
 0.0 	 0.2 	 0.7 	 0.1 	 
@@ -274,3 +275,4 @@ P4 	 0.0 	 0.1 	 0.24 	 0.27 	 0.29 	 0.29 	 0.29 	 0.29 	 0.29 	 0.29 	 0.29 	 
 ---------------------------------------------------------------------------------
 From the t = 6. The State Probability ( 0.13 0.43 0.15 0.29 ) will not change anymore!
 ---------------------------------------------------------------------------------
+````
