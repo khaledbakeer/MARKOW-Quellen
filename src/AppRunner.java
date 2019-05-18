@@ -4,7 +4,7 @@ public class AppRunner {
 
     public static void main(String[] args) {
 
-        double[] stateProbability = {1, 0, 0};
+        double[] stateProbability = {1, 0, 0, 0};
 
         double[][] transitionProbability =
                 {
