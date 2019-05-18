@@ -39,11 +39,13 @@ public class Calculate {
         }
     }
 
-    public void PrintStateProbability() {
-        for (int h = 0; h < 50; h++) {
-            System.out.print("\nt = " + _t + " -> " + "( ");
+    public void PrintStateProbability(int t) {
+        for (int h = 0; h < t + 1; h++) {
+            System.out.print("\nState Probability for ");
+            System.out.print("t = " + _t + " -> " + "( ");
             Arrays.stream(resultsTable.get(h)).forEach(x -> System.out.print(round(x, 2) + " "));
-            System.out.println(") \n");
+            System.out.println(")");
+            System.out.println("------------------------------------------------");
             double[] tmp = new double[_i];
             for (int a = 0; a < get_transitionProbability().length; a++) {
                 double x = 0;
