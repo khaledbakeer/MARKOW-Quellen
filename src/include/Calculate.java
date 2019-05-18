@@ -40,7 +40,7 @@ public class Calculate {
     }
 
     public void PrintStateProbability() {
-        for (int h = 0; h < 5; h++) {
+        for (int h = 0; h < 50; h++) {
             System.out.print("\nt = " + _t + " -> " + "( ");
             Arrays.stream(resultsTable.get(h)).forEach(x -> System.out.print(round(x, 2) + " "));
             System.out.println(") \n");
@@ -54,7 +54,7 @@ public class Calculate {
                     x = x + (resultsTable.get(h)[b] * get_transitionProbability()[b][a]);
                 }
                 tmp[a] = x;
-                System.out.println(x);
+                System.out.println(round(x, 2));
                 System.out.println();
             }
 
