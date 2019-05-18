@@ -26,10 +26,25 @@ public class Calculate {
      * @param StartStateProbability
      */
     public Calculate(double[][] _transitionProbability, double[] StartStateProbability) {
-        this._j = _transitionProbability.length;
-        this._i = _transitionProbability[0].length;
-        this._transitionProbability = _transitionProbability;
+        if (_transitionProbability.length != StartStateProbability.length)
+            throw new IllegalArgumentException("The start state probability must have the same counts of elements as The transition probability" +
+                    "\n The start state probability has " + StartStateProbability.length + " elements" +
+                    "\n and the transition probability has " + _transitionProbability.length + " elements");
+
+        if (_transitionProbability.length == 0)
+            throw new IllegalArgumentException("The Transition Probability must have at least one element.");
+        else this._j = _transitionProbability.length;
+
+        if (_transitionProbability[0].length == 0)
+            throw new IllegalArgumentException("The Transition Probability must have at least one element.");
+        else this._i = _transitionProbability[0].length;
+
+        if (_transitionProbability == null) throw new NullPointerException("The Transition Probability cannot be null");
+        else this._transitionProbability = _transitionProbability;
+
+        if (StartStateProbability == null) throw new NullPointerException("The Start State Probability cannot be null");
         this._stateProbability = StartStateProbability;
+
         resultsTable = new ArrayList<>();
 
         double[] tmp = new double[_i];
