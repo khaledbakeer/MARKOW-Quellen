@@ -12,7 +12,7 @@ import java.util.List;
  * von Quellenzeichen, d. h. die Folge der Zustände, sowohl von der momentanen Verteilung der Auftritts- bzw.
  * Zustandswahrscheinlichkeiten als auch von der Verteilung der Übergangswahrscheinlichkeiten abhängt.
  */
-public class Calculate {
+public class Markow {
 
     private int _t = 0;
     private int _j;
@@ -25,7 +25,7 @@ public class Calculate {
      * @param _transitionProbability
      * @param StartStateProbability
      */
-    public Calculate(double[][] _transitionProbability, double[] StartStateProbability) {
+    public Markow(double[][] _transitionProbability, double[] StartStateProbability) {
         if (_transitionProbability.length != StartStateProbability.length)
             throw new IllegalArgumentException("The start state probability must have the same counts of elements as The transition probability" +
                     "\n The start state probability has " + StartStateProbability.length + " elements" +
@@ -141,6 +141,8 @@ public class Calculate {
      */
     public void PrintStateProbabilityTable() {
         System.out.println();
+        System.out.println("Table of all State Probabilities to find the Steady State: ");
+        System.out.println("-----------------------------------------------------------");
         for (int j = 0; j < resultsTable.get(0).length; j++) {
             System.out.print("P" + (j + 1) + " \t ");
             for (int i = 0; i < resultsTable.size(); i++) {
