@@ -123,7 +123,7 @@ public class Markow {
                     if (j == resultsTable.get(i).length - 1) {
                         System.out.print("From the t = " + (i) + ". The State Probability ");
                         System.out.print("( ");
-                        Arrays.stream(resultsTable.get(i)).forEach(x -> System.out.print(round(x, 2) + " "));
+                        Arrays.stream(resultsTable.get(i + 1)).forEach(x -> System.out.print(round(x, 2) + " "));
                         System.out.print(") ");
                         System.out.print("will not change anymore!");
                         System.out.println();
