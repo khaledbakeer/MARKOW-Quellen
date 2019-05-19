@@ -1,10 +1,10 @@
-import include.Calculate;
+import include.Markow;
 
 public class AppRunner {
 
     public static void main(String[] args) {
 
-        double[] stateProbability = {1, 0, 0, 0};
+        double[] stateProbability = {0.25, 0.25, 0.25, 0.25};
 
         double[][] transitionProbability =
                 {
@@ -14,7 +14,7 @@ public class AppRunner {
                         {0.2, 0.3, 0.1, 0.4}
                 };
 
-        Calculate c = new Calculate(transitionProbability, stateProbability);
+        Markow c = new Markow(transitionProbability, stateProbability);
         c.PrintTransitionProbability();
 
         System.out.println();
