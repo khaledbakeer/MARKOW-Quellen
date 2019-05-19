@@ -121,7 +121,7 @@ public class Markow {
             for (int j = 0; j < resultsTable.get(i).length; j++) {
                 if (round(resultsTable.get(i - 1)[j], 2) == round(resultsTable.get(i)[j], 2)) {
                     if (j == resultsTable.get(i).length - 1) {
-                        System.out.print("From the t = " + (i + 1) + ". The State Probability ");
+                        System.out.print("From the t = " + (i) + ". The State Probability ");
                         System.out.print("( ");
                         Arrays.stream(resultsTable.get(i)).forEach(x -> System.out.print(round(x, 2) + " "));
                         System.out.print(") ");
